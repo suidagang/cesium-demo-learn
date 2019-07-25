@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<div>iframe 里面</div>
+	<div id="message"></div>
+	<button onclick="test()">像父传值</button>
+	<script>
+		window.addEventListener('message', function (event) {
+			document.getElementById('message').innerHTML = "收到" +event.origin + "消息：" + event.data;
+		}, false);
+		function test() {
+			window.parent.postMessage({
+				msg: "hideselfService"
+			}, '*');
+		}
+
+	</script>
+</body>
+
+</html>
